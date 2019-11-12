@@ -5,9 +5,15 @@ def register_user(name, age):
     connection = sqlite3.connect('user_db')
     cursor = connection.cursor()
     sql = f'INSERT INTO user (name, age) VALUES ("{name}", {age})'
-    cursor.execute(sql)
-    connection.commit()
-    connection.close()
+    try:
+        cursor.execute(sql)
+        connection.commit()
+        connection.close()
+        return True
+    except sqlite3.IntegrityError:
+        print(f'Duplicated user name {name}')
+        connection.close()
+        return False
 
 
 def all_show_user():

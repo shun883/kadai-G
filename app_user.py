@@ -16,6 +16,7 @@ def main():
 
 
     elif command == 'a' or command == 'A':
+
         new_name = input('New user name > ')
         new_age = input('New user age > ')
 
@@ -38,8 +39,9 @@ def main():
         elif int(new_age) > 120:
             print('Age is greater than 120')
         else:
-            register_user(new_name, int(new_age))
-            print(f'Add new user: {new_name}')
+            if register_user(new_name, int(new_age)):
+                print(f'Add new user: {new_name}')
+
 
 
     elif command == 'f' or command == 'F':
